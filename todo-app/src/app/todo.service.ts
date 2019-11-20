@@ -16,6 +16,11 @@ export class TodoService {
     return todos$;
   }
 
-
+  public updateDone(isdone: boolean, id: number): Observable<Array<Todo>> {
+    const todos$ = this.http
+    .put<Array<Todo>>(environment.todoEndpoint + '/todos/' + id
+    , {isdone});
+    return todos$;
+  }
 
 }

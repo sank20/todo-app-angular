@@ -2,9 +2,10 @@
 <div id="details" *ngIf="todoItem">
   <h4>{{todoItem.title}}</h4>
   Content: {{todoItem.content}} <br>
-  Created Date: {{todoItem.createdDate}}
-  <div *ngIf="todoItem.isdone; then doneBlock else pendingBlock">
-    <div #doneBlock>Status: Done</div>
-    <div #pendingBlock>Status: Pending</div>
-  </div>
+  Created Date: {{todoItem.createdDate}} <br>
+  <button (click)="markDone(todoItem)">Mark as done</button>
+  <div *ngIf="todoItem.isdone==true; then doneBlock else pendingBlock"></div>
+    <ng-template #doneBlock>Status: Done</ng-template>
+    <ng-template #pendingBlock>Status: Pending</ng-template>
+
 </div>

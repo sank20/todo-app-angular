@@ -1,3 +1,4 @@
+import { TodoService } from './../todo.service';
 import { Todo } from './../model/todo.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,15 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TodoDetailsComponent implements OnInit {
   // todoItem: Todo;
-  constructor() { }
+  constructor(private todoService: TodoService) { }
   @Input() todoItem: Todo;
   ngOnInit() {
   }
-  display(todo: Todo){
-    // let detailsElement = document.getElementById('details');
-    // console.log(detailsElement);
-    // this.todoItem = todo;
-    // detailsElement.innerHTML = todo.content;
+  markDone(todo: Todo){
+    const newStatus = !todo.isdone;
+    this.todoService.updateDone(newStatus, todo.id).subscribe(todoNew => {
+    todo.isdone = newStatus;
+    });
   }
 
 }

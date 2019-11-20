@@ -13,7 +13,7 @@ export class TodoListComponent implements OnInit {
   selectedTodo: Todo;
   detailsComponent: TodoDetailsComponent;
   constructor(private todoService: TodoService) {
-    this.detailsComponent = new TodoDetailsComponent();
+    this.detailsComponent = new TodoDetailsComponent(todoService);
   }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class TodoListComponent implements OnInit {
     console.log(todo);
     console.log("clicked");
     // this.detailsComponent.display(todo);
-    this.selectedTodo= todo;
+    this.selectedTodo = todo;
   }
 
 

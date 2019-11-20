@@ -1,6 +1,8 @@
 <p>todo-list works!</p>
-<div class="todo-item" *ngFor="let todo of todos">
-  <span>{{todo.title}}</span>&nbsp;
-  <!-- <span>{{contact.lastname}}</span> -->
+<div *ngFor="let todo of todos">
+  <div class="todo-item" (click)="displayDetails(todo)">{{todo.title}}</div>&nbsp;
   <br>
 </div>
+
+<app-todo-details [todoItem]="selectedTodo"></app-todo-details>
+

@@ -1,3 +1,4 @@
+import { TodoDetailsComponent } from './../todo-details/todo-details.component';
 import { Todo } from './../model/todo.model';
 import { TodoService } from './../todo.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,13 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
   todos: Array<Todo>;
-  constructor(private todoService: TodoService) { }
+  selectedTodo: Todo;
+  detailsComponent: TodoDetailsComponent;
+  constructor(private todoService: TodoService) {
+    this.detailsComponent = new TodoDetailsComponent();
+  }
 
   ngOnInit() {
-    // this.todoService.list().subscribe(todos => {
-    //   this.todos = todos;
-    //   console.log(todos);
-    // });
+    this.todoService.list().subscribe(todos => {
+      this.todos = todos;
+      console.log(todos);
+    });
+
+    let todoItems = document.getElementsByClassName('todo-item');
   }
+  displayDetails(todo: Todo) {
+    console.log(todo);
+    console.log("clicked");
+    // this.detailsComponent.display(todo);
+    this.selectedTodo= todo;
+  }
+
 
 }
